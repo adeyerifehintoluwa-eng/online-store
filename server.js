@@ -16,6 +16,7 @@ const BLOG_POSTS_FILE = path.join(DATA_DIR, 'blog-posts.json');
 const CONTACT_CONTENT_FILE = path.join(DATA_DIR, 'contact-content.json');
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const PORT = Number(process.env.PORT || 3000);
+const SESSION_SECRET = process.env.SESSION_SECRET || 'kt-fashion-dev-session-secret';
 
 const OWNER_EMAIL = 'owner@ktfashion.com';
 const OWNER_PASSWORD = 'Owner@123';
@@ -283,8 +284,6 @@ const SEED_CONTACT_CONTENT = {
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126871.56902579633!2d3.2889702440969008!3d6.548035692223913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8c7a5222cf51%3A0xb0f858b71e4f8db0!2sLagos!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng'
 };
 
-const sessions = new Map();
-
 function ensureDataFiles() {
     fs.mkdirSync(DATA_DIR, { recursive: true });
 
@@ -413,37 +412,72 @@ function serializeCookie(name, value, options = {}) {
     if (options.path) parts.push(`Path=${options.path}`);
     if (options.sameSite) parts.push(`SameSite=${options.sameSite}`);
     if (options.maxAge !== undefined) parts.push(`Max-Age=${options.maxAge}`);
+    if (options.secure) parts.push('Secure');
 
     return parts.join('; ');
 }
 
-function createSession(userId) {
-    const token = crypto.randomBytes(24).toString('hex');
-    sessions.set(token, {
-        userId,
-        expiresAt: Date.now() + SESSION_TTL_MS
-    });
-    return token;
+function createSessionSignature(payload) {
+    return crypto
+        .createHmac('sha256', SESSION_SECRET)
+        .update(payload)
+        .digest('base64url');
 }
 
-function destroySession(request) {
-    const cookies = parseCookies(request.headers.cookie || '');
-    if (cookies.kt_session) {
-        sessions.delete(cookies.kt_session);
+function createSession(userId) {
+    const session = {
+        userId,
+        expiresAt: Date.now() + SESSION_TTL_MS
+    };
+    const payload = Buffer.from(JSON.stringify(session), 'utf8').toString('base64url');
+    const signature = createSessionSignature(payload);
+    return `${payload}.${signature}`;
+}
+
+function parseSessionToken(token) {
+    const value = String(token || '').trim();
+    if (!value || !value.includes('.')) {
+        return null;
     }
+
+    const [payload, signature] = value.split('.');
+    if (!payload || !signature) {
+        return null;
+    }
+
+    const expectedSignature = createSessionSignature(payload);
+    if (
+        signature.length !== expectedSignature.length ||
+        !crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))
+    ) {
+        return null;
+    }
+
+    try {
+        const session = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+        if (!session || typeof session.userId !== 'string' || typeof session.expiresAt !== 'number') {
+            return null;
+        }
+
+        if (session.expiresAt < Date.now()) {
+            return null;
+        }
+
+        return session;
+    } catch (error) {
+        return null;
+    }
+}
+
+function destroySession() {
+    // Session state is stored in the signed cookie itself.
 }
 
 function getCurrentUser(request) {
     const cookies = parseCookies(request.headers.cookie || '');
     const token = cookies.kt_session;
-
-    if (!token || !sessions.has(token)) {
-        return null;
-    }
-
-    const session = sessions.get(token);
-    if (!session || session.expiresAt < Date.now()) {
-        sessions.delete(token);
+    const session = parseSessionToken(token);
+    if (!session) {
         return null;
     }
 
@@ -939,7 +973,8 @@ async function handleApi(request, response, url) {
                 'Set-Cookie': serializeCookie('kt_session', token, {
                     path: '/',
                     sameSite: 'Lax',
-                    maxAge: SESSION_TTL_MS / 1000
+                    maxAge: SESSION_TTL_MS / 1000,
+                    secure: Boolean(process.env.VERCEL)
                 })
             }
         );
@@ -956,7 +991,8 @@ async function handleApi(request, response, url) {
                 'Set-Cookie': serializeCookie('kt_session', '', {
                     path: '/',
                     sameSite: 'Lax',
-                    maxAge: 0
+                    maxAge: 0,
+                    secure: Boolean(process.env.VERCEL)
                 })
             }
         );
