@@ -169,6 +169,26 @@ $(document).ready(function() {
         });
     }
 
+    function updateCartNavbar() {
+        const cartLinks = $('.header__right__widget a:has(.icon_bag_alt), .offcanvas__widget a:has(.icon_bag_alt)');
+
+        cartLinks.each(function() {
+            const link = $(this);
+            link.attr('href', './shop-cart/');
+            link.addClass('nav-cart-link');
+
+            if (!link.children('.nav-cart-label').length) {
+                link.prepend('<span class="nav-cart-label">Cart</span>');
+            }
+
+            let tip = link.find('.tip');
+            if (!tip.length) {
+                tip = $('<div class="tip">0</div>');
+                link.append(tip);
+            }
+        });
+    }
+
     function toggleWishlist(product) {
         const productId = String(product && product.id || '').trim();
         if (!productId) {
@@ -394,11 +414,13 @@ $(document).ready(function() {
     syncActiveNavbar();
     syncFooterLinks();
     updateWishlistNavbar();
+    updateCartNavbar();
 
     window.getWishlistIds = getWishlistIds;
     window.isWishlisted = isWishlisted;
     window.toggleWishlist = toggleWishlist;
     window.updateWishlistNavbar = updateWishlistNavbar;
+    window.updateCartNavbar = updateCartNavbar;
 
     window.addEventListener('storage', function() {
         updateWishlistNavbar();
