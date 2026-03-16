@@ -455,6 +455,32 @@ ol {
 	font-size: 13px;
 }
 
+.header__right__auth--logged-in {
+	display: inline-block;
+	margin-right: 25px;
+}
+
+.auth-user-greeting {
+	font-size: 12px;
+	color: #666666;
+	position: relative;
+	margin-right: 8px;
+	display: inline-block;
+	max-width: 140px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+
+.auth-user-greeting:after {
+	position: absolute;
+	right: -8px;
+	top: -2px;
+	content: "/";
+	font-size: 13px;
+}
+
 .header__right__widget {
 	display: inline-block;
 }
@@ -1305,6 +1331,129 @@ ol {
 	margin-left: 4px;
 }
 
+.product__item__pic-link {
+	display: block;
+}
+
+.product-card__image {
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+	border-radius: 6px;
+}
+
+.product-card__image--related {
+	height: 320px;
+}
+
+.product__item__text--catalog {
+	padding-top: 16px;
+}
+
+.product__item__actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.product__item__link {
+	font-size: 13px;
+	color: #111111;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	border-bottom: 2px solid #ca1515;
+	padding-bottom: 2px;
+}
+
+.product__item__link:hover {
+	color: #ca1515;
+}
+
+.product__item__cart-btn {
+	min-width: 160px;
+	text-align: center;
+}
+
+.product__details__meta {
+	display: inline-block;
+	font-size: 13px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #888888;
+	margin-bottom: 12px;
+}
+
+.product__details__badge {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #ca1515;
+	background: rgba(202, 21, 21, 0.08);
+	padding: 7px 12px;
+	border-radius: 999px;
+	margin-bottom: 16px;
+}
+
+.product__details__image {
+	width: 100%;
+	border-radius: 10px;
+	object-fit: cover;
+	max-height: 700px;
+}
+
+.product__details__body {
+	padding-top: 12px;
+}
+
+.product__details__actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.product__details__actions .quantity {
+	margin-bottom: 0;
+}
+
+.product__details__actions .quantity input {
+	width: 96px;
+	height: 50px;
+	border: 1px solid #e1e1e1;
+	border-radius: 50px;
+	padding: 0 18px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #111111;
+}
+
+.product__details__secondary {
+	font-size: 14px;
+	color: #111111;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.product__details__secondary:hover {
+	color: #ca1515;
+}
+
 /*---------------------
   Shop
 -----------------------*/
@@ -1437,6 +1586,30 @@ ol {
 	right: 0;
 	bottom: -5px;
 	border-radius: 2px;
+}
+
+.shop-sidebar-help-link {
+	position: relative !important;
+	right: auto !important;
+	bottom: auto !important;
+	display: inline-block;
+	margin-top: 4px;
+}
+
+.shop-collection-actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.shop-collection-actions .primary-btn {
+	margin-right: 0 !important;
 }
 
 .filter-range-wrap .range-slider .price-input {
@@ -3324,6 +3497,9 @@ ol {
 		background: transparent;
 		color: #111111;
 	}
+	.slicknav_nav li.active > a {
+		color: #ca1515;
+	}
 	.slicknav_nav {
 		display: block !important;
 	}
@@ -3383,6 +3559,14 @@ ol {
 		top: -2px;
 		content: "/";
 		font-size: 13px;
+	}
+	.offcanvas__auth--logged-in {
+		display: block;
+	}
+	.offcanvas__auth .auth-user-greeting {
+		font-size: 15px;
+		color: #111111;
+		font-weight: 500;
 	}
 	.header__menu {
 		display: none;
@@ -3551,6 +3735,14 @@ ol {
 		top: -2px;
 		content: "/";
 		font-size: 13px;
+	}
+	.offcanvas__auth--logged-in {
+		display: block;
+	}
+	.offcanvas__auth .auth-user-greeting {
+		font-size: 15px;
+		color: #111111;
+		font-weight: 500;
 	}
 	.header__menu {
 		display: none;

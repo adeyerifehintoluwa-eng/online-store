@@ -1,0 +1,9 @@
+{
+  "name": "kt-fashion-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dynamic KT Fashion storefront server",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

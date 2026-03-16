@@ -1,0 +1,20 @@
+[
+  {
+    "id": "user_1773665322074",
+    "name": "KT Fashion Owner",
+    "email": "owner@ktfashion.com",
+    "role": "admin",
+    "passwordHash": "3b7f806b0cc5bab2c23470bf463b146d5b7305f4bc1a39628a3d4569bff2d08424d83b9717773bbe3be07c2d5674ec94c8568550036326c1177da5a540161bae",
+    "passwordSalt": "cd9297d01dbe6f57f415cf0fbb3c7bbb",
+    "createdAt": "2026-03-16T12:48:42.075Z"
+  },
+  {
+    "id": "user_1773665920382",
+    "name": "Ayoyinka",
+    "email": "akomolafeayoyinka@gmail.com",
+    "role": "customer",
+    "passwordHash": "54d3d7be99719274a56689035c57b0f9bbbb9b7062c04526d750beec4331190fbbb3176fcc546f3454543b4472a5ce2d5cd6d4609d655df81e038a2926915db2",
+    "passwordSalt": "c8d9432592d95b56e9324f8c77a0bf18",
+    "createdAt": "2026-03-16T12:58:40.386Z"
+  }
+]

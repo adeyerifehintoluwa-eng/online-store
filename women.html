@@ -26,27 +26,61 @@
 </head>
 
 <body>
+  <div id="preloder">
+    <div class="loader"></div>
+  </div>
 
-  <!-- Header -->
+  <div class="offcanvas-menu-overlay"></div>
+  <div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__close">+</div>
+    <ul class="offcanvas__widget">
+      <li><span class="icon_search search-switch"></span></li>
+      <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
+      <li><a href="./shop-cart/"><span class="icon_bag_alt"></span><div class="tip">0</div></a></li>
+    </ul>
+    <div class="offcanvas__logo">
+      <a href="./"><img src="img/logo.png" alt=""></a>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__auth">
+      <a href="./login/">Login</a>
+      <a href="./signup/">Register</a>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container-fluid">
       <div class="row">
         <div class="col-xl-3 col-lg-2">
           <div class="header__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+            <a href="./"><img src="img/logo.png" alt=""></a>
           </div>
         </div>
 
         <div class="col-xl-6 col-lg-7">
           <nav class="header__menu">
             <ul>
-              <li><a href="./index.html">Home</a></li>
-              <li class="active"><a href="./women.html">Women’s</a></li>
-              <li><a href="./men.html">Men’s</a></li>
-              <li><a href="./shop.html">Shop</a></li>
-              <li><a href="./shop-cart.html">Cart</a></li>
+              <li><a href="./">Home</a></li>
+              <li class="active"><a href="./women/">Women's</a></li>
+              <li><a href="./men/">Men's</a></li>
+              <li><a href="./shop/">Shop</a></li>
+              <li><a href="./blog/">Blog</a></li>
+              <li><a href="./contact/">Contact</a></li>
             </ul>
           </nav>
+        </div>
+        <div class="col-lg-3">
+          <div class="header__right">
+            <div class="header__right__auth">
+              <a href="./login/">Login</a>
+              <a href="./signup/">Register</a>
+            </div>
+            <ul class="header__right__widget">
+              <li><span class="icon_search search-switch"></span></li>
+              <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
+              <li><a href="./shop-cart/"><span class="icon_bag_alt"></span><div class="tip">0</div></a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -62,8 +96,8 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="breadcrumb__links">
-            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-            <span>Women’s Collection</span>
+            <a href="./"><i class="fa fa-home"></i> Home</a>
+            <span>Women's Collection</span>
           </div>
         </div>
       </div>
@@ -92,73 +126,14 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="section-title">
-            <h4>Women’s Wears</h4>
+            <h4>Women's Wears</h4>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <!-- Item 1 -->
-<div class="col-lg-3 col-md-4 col-sm-6">
-  <div class="product__item">
-
-    <img src="img/product/details/Ankara-gown.jpg" alt="Ankara Dress"
-         style="width:100%; height:400px; object-fit:cover; border-radius:6px;">
-
-    <div class="product__item__text" style="text-align:center; margin-top:10px;">
-      <h6>Ankara Dress</h6>
-      <div class="product__price">₦18,000</div>
-      <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
+      <div id="womenWearsProducts" class="row"></div>
     </div>
-
-  </div>
-</div>
-        <!-- Item 2 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-  <div class="product__item">
-
-    <img src="img/product/details/aso-oke-b.jpg" alt="Aso-oke boubou"
-         style="width:100%; height:400px; object-fit:cover; border-radius:6px;">
-
-    <div class="product__item__text" style="text-align:center; margin-top:10px;">
-      <h6>Aso-oke Dress</h6>
-      <div class="product__price">₦18,000</div>
-      <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-    </div>
-
-  </div>
-</div>
-
-        <!-- Item 3 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-  <div class="product__item">
-
-    <img src="img/product/details/iro-buba.jpg" alt="iro and buba"
-         style="width:100%; height:400px; object-fit:cover; border-radius:6px;">
-
-    <div class="product__item__text" style="text-align:center; margin-top:10px;">
-      <h6>Aso-oke Iro and Buba</h6>
-      <div class="product__price">₦180,000</div>
-      <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-    </div>
-
-  </div>
-</div>
-        <!-- Item 4 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-  <div class="product__item">
-
-    <img src="img/product/details/bou-bou.jpg" alt="Kimono bou-bou"
-         style="width:100%; height:400px; object-fit:cover; border-radius:6px;">
-
-    <div class="product__item__text" style="text-align:center; margin-top:10px;">
-      <h6>Agbeke's kimono</h6>
-      <div class="product__price">₦44999,000</div>
-      <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-    </div>
-
-  </div>
-</div>
+  </section>
 
  <!-- 2) BAGS -->
 <section id="bags" class="product spad">
@@ -173,49 +148,10 @@
     </div>
 
     <!-- Products Row -->
-    <div class="row">
-
-      <!-- Bag 1 -->
-      <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="product__item">
-
-          <img src="img/product/details/Adunni-bag.jpeg"
-               alt="Adunni's Bag"
-               style="width:100%; height:400px; object-fit:cover; border-radius:6px;">
-
-          <div class="product__item__text" style="text-align:center; margin-top:10px;">
-            <h6>Adunni's Bag</h6>
-            <div class="product__price">₦28,000</div>
-            <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Bag 2 -->
-      <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="product__item">
-
-          <img src="img/product/details/Aso-oke-bag.jpg"
-               alt="Aso-oke Bag"
-               style="width:100%; height:400px; object-fit:cover; border-radius:6px;">
-
-          <div class="product__item__text" style="text-align:center; margin-top:10px;">
-            <h6>Aduke Aso-oke Bag</h6>
-            <div class="product__price">₦47,000</div>
-            <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
+    <div id="womenBagsProducts" class="row"></div>
 
   </div>
 </section>
- 
-
-<div class="row">
 
   <!-- 4) JEWELRY -->
 <section id="jewelry" class="product spad">
@@ -231,62 +167,18 @@
     </div>
 
     <!-- Jewelry Products -->
-    <div class="row">
-
-      <!-- Jewelry 1 -->
-      <div class="col-lg-4 col-md-6 col-sm-6">
-        <div class="product__item">
-
-          <img src="img/product/details/bead-1.jpg"
-               alt="Iyunade Neck Set"
-               style="width:100%; border-radius:6px;">
-
-          <div class="product__item__text" style="text-align:center; margin-top:10px;">
-            <h6>Iyunade Neck Set</h6>
-            <div class="product__price">₦210,000</div>
-            <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Jewelry 2 -->
-      <div class="col-lg-4 col-md-6 col-sm-6">
-        <div class="product__item">
-
-          <img src="img/product/details/bead-2.jpg"
-               alt="Sijuade and Adedoyin's Set"
-               style="width:100%; border-radius:6px;">
-
-          <div class="product__item__text" style="text-align:center; margin-top:10px;">
-            <h6>Sijuade and Adedoyin's Set</h6>
-            <div class="product__price">₦210,000</div>
-            <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Jewelry 3 -->
-      <div class="col-lg-4 col-md-6 col-sm-6">
-        <div class="product__item">
-
-          <img src="img/product/details/bead-3.jpg"
-               alt="Ayaba's Luxury Set"
-               style="width:100%; border-radius:6px;">
-
-          <div class="product__item__text" style="text-align:center; margin-top:10px;">
-            <h6>Ayaba's Luxury Set</h6>
-            <div class="product__price">₦210,000</div>
-            <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
+    <div id="womenJewelryProducts" class="row"></div>
   </div>
 </section>
+
+  <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form class="search-model-form">
+        <input type="text" id="search-input" placeholder="Search here.....">
+      </form>
+    </div>
+  </div>
 
   <!-- Js Plugins -->
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -299,22 +191,11 @@
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.nicescroll.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/product-catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/storefront.js"></script>
 
 </body>
 </html>
- <!-- Bag 2 -->
-      <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="product__item">
 
-          <img src="img/product/details/his-hers.jpg"
-               alt="Aso-oke Bag"
-               style="width:100%; height:650px; object-fit:cover; border-radius:6px;">
-
-          <div class="product__item__text" style="text-align:center; margin-top:10px;">
-            <h6>His and Hers Traditional Bead</h6>
-            <div class="product__price">₦210,000</div>
-            <a href="./shop-cart.html" class="primary-btn">Add to Cart</a>
-          </div>
-
-        </div>
-      </div>

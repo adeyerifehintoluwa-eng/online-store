@@ -1,0 +1,25 @@
+[
+  {
+    "id": "KT-1773665954835",
+    "userId": "user_1773665920382",
+    "customerName": "Ayoyinka",
+    "customerEmail": "akomolafeayoyinka@gmail.com",
+    "createdAt": "2026-03-16T12:59:14.835Z",
+    "itemCount": 4,
+    "total": 74000,
+    "items": [
+      {
+        "id": "men-product-1",
+        "name": "Men Aso-Oke",
+        "price": 12000,
+        "quantity": 2
+      },
+      {
+        "id": "men-product-2",
+        "name": "Traditional Set",
+        "price": 25000,
+        "quantity": 2
+      }
+    ]
+  }
+]

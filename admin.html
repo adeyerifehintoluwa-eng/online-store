@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="KT Fashion admin dashboard">
+    <meta name="keywords" content="KT Fashion, admin, products, orders">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KT Fashion | Admin</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li><a href="./shop-cart/"><span class="icon_bag_alt"></span><div class="tip">0</div></a></li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="./login/">Login</a>
+            <a href="./signup/">Register</a>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="./"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li><a href="./">Home</a></li>
+                            <li><a href="./women/">Women's</a></li>
+                            <li><a href="./men/">Men's</a></li>
+                            <li><a href="./shop/">Shop</a></li>
+                            <li><a href="./blog/">Blog</a></li>
+                            <li><a href="./contact/">Contact</a></li>
+                            <li class="active"><a href="./admin/">Admin</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            <a href="./login/">Login</a>
+                            <a href="./signup/">Register</a>
+                        </div>
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li><a href="./shop-cart/"><span class="icon_bag_alt"></span><div class="tip">0</div></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="./"><i class="fa fa-home"></i> Home</a>
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="checkout spad">
+        <div class="container">
+            <div id="adminUnauthorized" style="display: none; padding: 32px; border: 1px solid #f2f2f2;">
+                <h4 style="margin-bottom: 12px;">Admin access required</h4>
+                <p style="margin-bottom: 18px; color: #666;">Log in with the owner account to manage products and orders.</p>
+                <a href="./login/" class="primary-btn">Go to Login</a>
+            </div>
+
+            <div id="adminDashboard" style="display: none;">
+                <div class="row" style="margin-bottom: 28px;">
+                    <div class="col-lg-12">
+                        <div style="padding: 28px 32px; background: linear-gradient(135deg, #f9f2ea 0%, #f5e7d3 100%);">
+                            <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ca1515; margin-bottom: 14px;">Owner Dashboard</span>
+                            <h2 style="font-size: 34px; margin-bottom: 12px;">Manage KT Fashion</h2>
+                            <p style="margin: 0; color: #444; line-height: 1.9;">Signed in as <strong id="adminOwnerName">Owner</strong>. Add products, update pricing, and monitor incoming orders from one place.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 28px;">
+                    <div class="col-md-6">
+                        <div style="padding: 24px; border: 1px solid #f2f2f2;">
+                            <p style="margin-bottom: 8px; color: #666;">Products</p>
+                            <h3 id="adminProductCount" style="margin: 0;">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="padding: 24px; border: 1px solid #f2f2f2;">
+                            <p style="margin-bottom: 8px; color: #666;">Orders</p>
+                            <h3 id="adminOrderCount" style="margin: 0;">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="contact__form" style="padding: 28px; border: 1px solid #f2f2f2;">
+                            <h5 id="adminFormTitle">Add Product</h5>
+                            <form id="adminProductForm">
+                                <input type="hidden" id="adminProductId">
+                                <input type="text" id="adminProductName" placeholder="Product name" required>
+                                <input type="number" id="adminProductPrice" placeholder="Price" min="1" step="0.01" required>
+                                <input type="text" id="adminProductImage" placeholder="Image path or URL" required>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select id="adminProductCategory" class="form-control" style="height: 50px; margin-bottom: 20px; border: 1px solid #ebebeb; padding: 0 20px;">
+                                            <option value="Women">Women</option>
+                                            <option value="Men">Men</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select id="adminProductSection" class="form-control" style="height: 50px; margin-bottom: 20px; border: 1px solid #ebebeb; padding: 0 20px;"></select>
+                                    </div>
+                                </div>
+                                <input type="text" id="adminProductBadge" placeholder="Badge">
+                                <textarea id="adminProductDescription" placeholder="Description" style="height: 110px;"></textarea>
+                                <textarea id="adminProductSpecification" placeholder="Specification" style="height: 110px;"></textarea>
+                                <textarea id="adminProductCare" placeholder="Care instructions" style="height: 110px;"></textarea>
+                                <label style="display: block; margin-bottom: 18px; font-size: 14px; color: #444;">
+                                    <input type="checkbox" id="adminProductFeatured" style="margin-right: 8px;">
+                                    Feature this product on the shop page
+                                </label>
+                                <button type="submit" class="site-btn" id="adminProductSubmit" style="margin-right: 8px;">Save Product</button>
+                                <button type="button" class="site-btn" id="adminResetForm" style="background: #111111;">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div style="padding: 28px; border: 1px solid #f2f2f2; margin-bottom: 24px;">
+                            <h5 style="margin-bottom: 18px;">Products</h5>
+                            <div id="adminProductList"></div>
+                        </div>
+                        <div style="padding: 28px; border: 1px solid #f2f2f2;">
+                            <h5 style="margin-bottom: 18px;">Recent Orders</h5>
+                            <div id="adminOrderList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="../">
+  <meta charset="UTF-8">
+  <meta name="description" content="Ashion Template">
+  <meta name="keywords" content="Ashion, fashion, html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Women | Ashion</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="preloder">
+    <div class="loader"></div>
+  </div>
+
+  <div class="offcanvas-menu-overlay"></div>
+  <div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__close">+</div>
+    <ul class="offcanvas__widget">
+      <li><span class="icon_search search-switch"></span></li>
+      <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
+      <li><a href="./shop-cart/"><span class="icon_bag_alt"></span><div class="tip">0</div></a></li>
+    </ul>
+    <div class="offcanvas__logo">
+      <a href="./"><img src="img/logo.png" alt=""></a>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__auth">
+      <a href="./login/">Login</a>
+      <a href="./signup/">Register</a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-3 col-lg-2">
+          <div class="header__logo">
+            <a href="./"><img src="img/logo.png" alt=""></a>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-7">
+          <nav class="header__menu">
+            <ul>
+              <li><a href="./">Home</a></li>
+              <li class="active"><a href="./women/">Women's</a></li>
+              <li><a href="./men/">Men's</a></li>
+              <li><a href="./shop/">Shop</a></li>
+              <li><a href="./blog/">Blog</a></li>
+              <li><a href="./contact/">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-lg-3">
+          <div class="header__right">
+            <div class="header__right__auth">
+              <a href="./login/">Login</a>
+              <a href="./signup/">Register</a>
+            </div>
+            <ul class="header__right__widget">
+              <li><span class="icon_search search-switch"></span></li>
+              <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
+              <li><a href="./shop-cart/"><span class="icon_bag_alt"></span><div class="tip">0</div></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas__open">
+        <i class="fa fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-option">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcrumb__links">
+            <a href="./"><i class="fa fa-home"></i> Home</a>
+            <span>Women's Collection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Women Category Menu (4 sections) -->
+  <section class="product spad" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="filter__controls" style="margin-bottom: 25px;">
+            <li class="active"><a href="#wears" style="color: inherit;">Wears</a></li>
+            <li><a href="#bags" style="color: inherit;">Bags</a></li>
+            <li><a href="#shoes" style="color: inherit;">Shoes</a></li>
+            <li><a href="#jewelry" style="color: inherit;">Jewelry</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1) WEARS -->
+  <section id="wears" class="product spad">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title">
+            <h4>Women's Wears</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="product__item product__item--catalog">
+            <div class="product__item__pic">
+              <a class="product__item__pic-link" href="./product-details/?id=product1">
+                <img src="img/product/details/Ankara-gown.jpg" alt="Ankara Dress" class="product-card__image">
+              </a>
+            </div>
+            <div class="product__item__text product__item__text--catalog">
+              <h6><a href="./product-details/?id=product1">Ankara Dress</a></h6>
+              <div class="product__price">&#8358;18,000</div>
+              <div class="product__item__actions">
+                <a href="./product-details/?id=product1" class="product__item__link">View Details</a>
+                <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product1', 'Ankara Dress', '18000', 'img/product/details/Ankara-gown.jpg')">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="product__item product__item--catalog">
+            <div class="product__item__pic">
+              <a class="product__item__pic-link" href="./product-details/?id=product2">
+                <img src="img/product/details/aso-oke-b.jpg" alt="Aso-oke Dress" class="product-card__image">
+              </a>
+            </div>
+            <div class="product__item__text product__item__text--catalog">
+              <h6><a href="./product-details/?id=product2">Aso-oke Dress</a></h6>
+              <div class="product__price">&#8358;18,000</div>
+              <div class="product__item__actions">
+                <a href="./product-details/?id=product2" class="product__item__link">View Details</a>
+                <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product2', 'Aso-oke Dress', '18000', 'img/product/details/aso-oke-b.jpg')">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="product__item product__item--catalog">
+            <div class="product__item__pic">
+              <a class="product__item__pic-link" href="./product-details/?id=product3">
+                <img src="img/product/details/iro-buba.jpg" alt="Aso-oke Iro and Buba" class="product-card__image">
+              </a>
+            </div>
+            <div class="product__item__text product__item__text--catalog">
+              <h6><a href="./product-details/?id=product3">Aso-oke Iro and Buba</a></h6>
+              <div class="product__price">&#8358;180,000</div>
+              <div class="product__item__actions">
+                <a href="./product-details/?id=product3" class="product__item__link">View Details</a>
+                <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product3', 'Aso-oke Iro and Buba', '180000', 'img/product/details/iro-buba.jpg')">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="product__item product__item--catalog">
+            <div class="product__item__pic">
+              <a class="product__item__pic-link" href="./product-details/?id=product4">
+                <img src="img/product/details/bou-bou.jpg" alt="Agbeke's Kimono" class="product-card__image">
+              </a>
+            </div>
+            <div class="product__item__text product__item__text--catalog">
+              <h6><a href="./product-details/?id=product4">Agbeke's Kimono</a></h6>
+              <div class="product__price">&#8358;44,999,000</div>
+              <div class="product__item__actions">
+                <a href="./product-details/?id=product4" class="product__item__link">View Details</a>
+                <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product4', 'Agbeke\'s Kimono', '44999000', 'img/product/details/bou-bou.jpg')">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+ <!-- 2) BAGS -->
+<section id="bags" class="product spad">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h4>Bags</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Row -->
+    <div class="row">
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="product__item product__item--catalog">
+          <div class="product__item__pic">
+            <a class="product__item__pic-link" href="./product-details/?id=product5">
+              <img src="img/product/details/Adunni-bag.jpeg" alt="Adunni's Bag" class="product-card__image">
+            </a>
+          </div>
+          <div class="product__item__text product__item__text--catalog">
+            <h6><a href="./product-details/?id=product5">Adunni's Bag</a></h6>
+            <div class="product__price">&#8358;28,000</div>
+            <div class="product__item__actions">
+              <a href="./product-details/?id=product5" class="product__item__link">View Details</a>
+              <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product5', 'Adunni\'s Bag', '28000', 'img/product/details/Adunni-bag.jpeg')">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="product__item product__item--catalog">
+          <div class="product__item__pic">
+            <a class="product__item__pic-link" href="./product-details/?id=product6">
+              <img src="img/product/details/Aso-oke-bag.jpg" alt="Aduke Aso-oke Bag" class="product-card__image">
+            </a>
+          </div>
+          <div class="product__item__text product__item__text--catalog">
+            <h6><a href="./product-details/?id=product6">Aduke Aso-oke Bag</a></h6>
+            <div class="product__price">&#8358;47,000</div>
+            <div class="product__item__actions">
+              <a href="./product-details/?id=product6" class="product__item__link">View Details</a>
+              <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product6', 'Aduke Aso-oke Bag', '47000', 'img/product/details/Aso-oke-bag.jpg')">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+ 
+
+<div class="row">
+
+  <!-- 4) JEWELRY -->
+<section id="jewelry" class="product spad">
+  <div class="container">
+
+    <!-- Section Title -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h4>Jewelry</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jewelry Products -->
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="product__item product__item--catalog">
+          <div class="product__item__pic">
+            <a class="product__item__pic-link" href="./product-details/?id=product7">
+              <img src="img/product/details/bead-1.jpg" alt="Iyunade Neck Set" class="product-card__image">
+            </a>
+          </div>
+          <div class="product__item__text product__item__text--catalog">
+            <h6><a href="./product-details/?id=product7">Iyunade Neck Set</a></h6>
+            <div class="product__price">&#8358;210,000</div>
+            <div class="product__item__actions">
+              <a href="./product-details/?id=product7" class="product__item__link">View Details</a>
+              <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product7', 'Iyunade Neck Set', '210000', 'img/product/details/bead-1.jpg')">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="product__item product__item--catalog">
+          <div class="product__item__pic">
+            <a class="product__item__pic-link" href="./product-details/?id=product8">
+              <img src="img/product/details/bead-2.jpg" alt="Sijuade and Adedoyin's Set" class="product-card__image">
+            </a>
+          </div>
+          <div class="product__item__text product__item__text--catalog">
+            <h6><a href="./product-details/?id=product8">Sijuade and Adedoyin's Set</a></h6>
+            <div class="product__price">&#8358;210,000</div>
+            <div class="product__item__actions">
+              <a href="./product-details/?id=product8" class="product__item__link">View Details</a>
+              <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product8', 'Sijuade and Adedoyin\'s Set', '210000', 'img/product/details/bead-2.jpg')">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="product__item product__item--catalog">
+          <div class="product__item__pic">
+            <a class="product__item__pic-link" href="./product-details/?id=product9">
+              <img src="img/product/details/bead-3.jpg" alt="Ayaba's Luxury Set" class="product-card__image">
+            </a>
+          </div>
+          <div class="product__item__text product__item__text--catalog">
+            <h6><a href="./product-details/?id=product9">Ayaba's Luxury Set</a></h6>
+            <div class="product__price">&#8358;210,000</div>
+            <div class="product__item__actions">
+              <a href="./product-details/?id=product9" class="product__item__link">View Details</a>
+              <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('product9', 'Ayaba\'s Luxury Set', '210000', 'img/product/details/bead-3.jpg')">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form class="search-model-form">
+        <input type="text" id="search-input" placeholder="Search here.....">
+      </form>
+    </div>
+  </div>
+
+  <!-- Js Plugins -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/mixitup.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.slicknav.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nicescroll.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+
+</body>
+</html>
+
