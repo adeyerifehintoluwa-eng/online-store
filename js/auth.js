@@ -189,6 +189,25 @@ $(document).ready(function() {
         });
     }
 
+    function initPasswordToggles() {
+        $('[data-password-toggle]').each(function() {
+            const button = $(this);
+            const inputId = button.attr('data-password-toggle');
+            const input = document.getElementById(inputId);
+
+            if (!input) {
+                return;
+            }
+
+            button.on('click', function() {
+                const showingPassword = input.type === 'text';
+                input.type = showingPassword ? 'password' : 'text';
+                button.text(showingPassword ? 'Show' : 'Hide');
+                button.attr('aria-label', showingPassword ? 'Show password' : 'Hide password');
+            });
+        });
+    }
+
     function toggleWishlist(product) {
         const productId = String(product && product.id || '').trim();
         if (!productId) {
@@ -415,6 +434,7 @@ $(document).ready(function() {
     syncFooterLinks();
     updateWishlistNavbar();
     updateCartNavbar();
+    initPasswordToggles();
 
     window.getWishlistIds = getWishlistIds;
     window.isWishlisted = isWishlisted;
