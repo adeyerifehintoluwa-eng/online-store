@@ -94,45 +94,7 @@
 <!-- Product Section -->
 <section class="product spad">
     <div class="container">
-        <div class="row">
-
-            <div class="col-lg-6 col-md-6">
-                <div class="product__item product__item--catalog">
-                    <div class="product__item__pic">
-                        <a class="product__item__pic-link" href="./product-details/?id=men-product-1">
-                            <img src="img/product/details/men-Aso-oke.jpg" alt="Men Aso-Oke" class="product-card__image">
-                        </a>
-                    </div>
-                    <div class="product__item__text product__item__text--catalog">
-                        <h6><a href="./product-details/?id=men-product-1">Men Aso-Oke</a></h6>
-                        <div class="product__price">&#8358;12,000</div>
-                        <div class="product__item__actions">
-                            <a href="./product-details/?id=men-product-1" class="product__item__link">View Details</a>
-                            <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('men-product-1', 'Men Aso-Oke', '12000', 'img/product/details/men-Aso-oke.jpg')">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6">
-                <div class="product__item product__item--catalog">
-                    <div class="product__item__pic">
-                        <a class="product__item__pic-link" href="./product-details/?id=men-product-2">
-                            <img src="img/product/details/men-1.jpg" alt="Traditional Set" class="product-card__image">
-                        </a>
-                    </div>
-                    <div class="product__item__text product__item__text--catalog">
-                        <h6><a href="./product-details/?id=men-product-2">Traditional Set</a></h6>
-                        <div class="product__price">&#8358;25,000</div>
-                        <div class="product__item__actions">
-                            <a href="./product-details/?id=men-product-2" class="product__item__link">View Details</a>
-                            <a href="#" class="primary-btn product__item__cart-btn" onclick="return addToCart('men-product-2', 'Traditional Set', '25000', 'img/product/details/men-1.jpg')">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <div id="menProducts" class="row"></div>
     </div>
 </section>
 
@@ -155,7 +117,9 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/product-catalog.js"></script>
 <script src="js/cart.js"></script>
+<script src="js/storefront.js"></script>
 
 </body>
 </html>
