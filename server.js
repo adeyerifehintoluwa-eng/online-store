@@ -5,7 +5,10 @@ const crypto = require('crypto');
 const { URL } = require('url');
 
 const ROOT_DIR = __dirname;
-const DATA_DIR = path.join(ROOT_DIR, 'data');
+const SOURCE_DATA_DIR = path.join(ROOT_DIR, 'data');
+const DATA_DIR = process.env.VERCEL
+    ? path.join('/tmp', 'kt-fashion-data')
+    : SOURCE_DATA_DIR;
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
@@ -286,23 +289,43 @@ function ensureDataFiles() {
     fs.mkdirSync(DATA_DIR, { recursive: true });
 
     if (!fs.existsSync(PRODUCTS_FILE)) {
-        writeJson(PRODUCTS_FILE, SEED_PRODUCTS.map(withTimestamps));
+        if (fs.existsSync(path.join(SOURCE_DATA_DIR, 'products.json'))) {
+            fs.copyFileSync(path.join(SOURCE_DATA_DIR, 'products.json'), PRODUCTS_FILE);
+        } else {
+            writeJson(PRODUCTS_FILE, SEED_PRODUCTS.map(withTimestamps));
+        }
     }
 
     if (!fs.existsSync(USERS_FILE)) {
-        writeJson(USERS_FILE, []);
+        if (fs.existsSync(path.join(SOURCE_DATA_DIR, 'users.json'))) {
+            fs.copyFileSync(path.join(SOURCE_DATA_DIR, 'users.json'), USERS_FILE);
+        } else {
+            writeJson(USERS_FILE, []);
+        }
     }
 
     if (!fs.existsSync(ORDERS_FILE)) {
-        writeJson(ORDERS_FILE, []);
+        if (fs.existsSync(path.join(SOURCE_DATA_DIR, 'orders.json'))) {
+            fs.copyFileSync(path.join(SOURCE_DATA_DIR, 'orders.json'), ORDERS_FILE);
+        } else {
+            writeJson(ORDERS_FILE, []);
+        }
     }
 
     if (!fs.existsSync(BLOG_POSTS_FILE)) {
-        writeJson(BLOG_POSTS_FILE, SEED_BLOG_POSTS.map(withBlogTimestamps));
+        if (fs.existsSync(path.join(SOURCE_DATA_DIR, 'blog-posts.json'))) {
+            fs.copyFileSync(path.join(SOURCE_DATA_DIR, 'blog-posts.json'), BLOG_POSTS_FILE);
+        } else {
+            writeJson(BLOG_POSTS_FILE, SEED_BLOG_POSTS.map(withBlogTimestamps));
+        }
     }
 
     if (!fs.existsSync(CONTACT_CONTENT_FILE)) {
-        writeJson(CONTACT_CONTENT_FILE, SEED_CONTACT_CONTENT);
+        if (fs.existsSync(path.join(SOURCE_DATA_DIR, 'contact-content.json'))) {
+            fs.copyFileSync(path.join(SOURCE_DATA_DIR, 'contact-content.json'), CONTACT_CONTENT_FILE);
+        } else {
+            writeJson(CONTACT_CONTENT_FILE, SEED_CONTACT_CONTENT);
+        }
     }
 
     const users = readJson(USERS_FILE, []);
@@ -1372,7 +1395,11 @@ async function requestHandler(request, response) {
 
 ensureDataFiles();
 
-http.createServer(requestHandler).listen(PORT, () => {
-    console.log(`KT Fashion server running at http://localhost:${PORT}`);
-    console.log(`Owner login: ${OWNER_EMAIL} / ${OWNER_PASSWORD}`);
-});
+if (require.main === module) {
+    http.createServer(requestHandler).listen(PORT, () => {
+        console.log(`KT Fashion server running at http://localhost:${PORT}`);
+        console.log(`Owner login: ${OWNER_EMAIL} / ${OWNER_PASSWORD}`);
+    });
+}
+
+module.exports = requestHandler;
