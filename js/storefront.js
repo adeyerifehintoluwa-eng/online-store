@@ -21,6 +21,7 @@
 
     function renderProductCard(product, imageClass) {
         var cardImageClass = imageClass || 'product-card__image';
+        var isSaved = typeof window.isWishlisted === 'function' && window.isWishlisted(product.id);
 
         return '' +
             '<div class="col-lg-4 col-md-6 col-sm-6">' +
@@ -35,11 +36,18 @@
                         '<div class="product__price">' + escapeHtml(formatCurrency(product.price)) + '</div>' +
                         '<div class="product__item__actions">' +
                             '<a href="./product-details/?id=' + encodeURIComponent(product.id) + '" class="product__item__link">View Details</a>' +
+                            '<button type="button" class="product__item__wishlist-btn js-storefront-toggle-wishlist' + (isSaved ? ' is-active' : '') + '" data-product-id="' + escapeHtml(product.id) + '" data-product-name="' + escapeHtml(product.name) + '" data-product-price="' + product.price + '" data-product-image="' + escapeHtml(product.image) + '">' + (isSaved ? 'Saved' : 'Save') + '</button>' +
                             '<a href="#" class="primary-btn product__item__cart-btn js-storefront-add-to-cart" data-product-id="' + escapeHtml(product.id) + '" data-product-name="' + escapeHtml(product.name) + '" data-product-price="' + product.price + '" data-product-image="' + escapeHtml(product.image) + '">Add to Cart</a>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
             '</div>';
+    }
+
+    function updateWishlistButtonState(button) {
+        var isSaved = typeof window.isWishlisted === 'function' && window.isWishlisted(button.getAttribute('data-product-id'));
+        button.classList.toggle('is-active', isSaved);
+        button.textContent = isSaved ? 'Saved' : 'Save';
     }
 
     function bindAddToCartButtons(container) {
@@ -54,6 +62,26 @@
                         button.getAttribute('data-product-price'),
                         button.getAttribute('data-product-image')
                     );
+                }
+            });
+        });
+
+        Array.prototype.slice.call(container.querySelectorAll('.js-storefront-toggle-wishlist')).forEach(function(button) {
+            updateWishlistButtonState(button);
+
+            button.addEventListener('click', function() {
+                if (typeof window.toggleWishlist !== 'function') {
+                    return;
+                }
+
+                var saved = window.toggleWishlist({
+                    id: button.getAttribute('data-product-id')
+                });
+
+                updateWishlistButtonState(button);
+
+                if (typeof window.showToast === 'function') {
+                    window.showToast(saved ? 'Item saved to wishlist.' : 'Item removed from wishlist.', saved ? 'success' : 'info');
                 }
             });
         });
@@ -75,6 +103,10 @@
         }).join('');
         bindAddToCartButtons(container);
     }
+
+    window.addEventListener('wishlist:changed', function() {
+        Array.prototype.slice.call(document.querySelectorAll('.js-storefront-toggle-wishlist')).forEach(updateWishlistButtonState);
+    });
 
     document.addEventListener('DOMContentLoaded', async function() {
         if (typeof window.loadCatalog !== 'function') {

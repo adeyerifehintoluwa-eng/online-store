@@ -1,6 +1,8 @@
 // auth.js - Handles login, signup, session UI, and admin links
 
 $(document).ready(function() {
+    const WISHLIST_STORAGE_KEY = 'ktWishlist';
+
     function ensureToastSupport() {
         if (window.showToast) return;
 
@@ -122,6 +124,67 @@ $(document).ready(function() {
             .replace(/'/g, '&#39;');
     }
 
+    function getWishlistIds() {
+        try {
+            const ids = JSON.parse(localStorage.getItem(WISHLIST_STORAGE_KEY) || '[]');
+            return Array.isArray(ids) ? ids.filter(Boolean) : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function setWishlistIds(ids) {
+        const nextIds = Array.from(new Set((ids || []).map(function(id) {
+            return String(id || '').trim();
+        }).filter(Boolean)));
+
+        localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(nextIds));
+        updateWishlistNavbar();
+        window.dispatchEvent(new CustomEvent('wishlist:changed', {
+            detail: {
+                ids: nextIds
+            }
+        }));
+    }
+
+    function isWishlisted(productId) {
+        return getWishlistIds().includes(String(productId || '').trim());
+    }
+
+    function updateWishlistNavbar() {
+        const count = getWishlistIds().length;
+        const wishlistLinks = $('.header__right__widget a:has(.icon_heart_alt), .offcanvas__widget a:has(.icon_heart_alt)');
+
+        wishlistLinks.each(function() {
+            const link = $(this);
+            link.attr('href', './wishlist/');
+
+            let tip = link.find('.tip');
+            if (!tip.length) {
+                tip = $('<div class="tip"></div>');
+                link.append(tip);
+            }
+
+            tip.text(count);
+        });
+    }
+
+    function toggleWishlist(product) {
+        const productId = String(product && product.id || '').trim();
+        if (!productId) {
+            return false;
+        }
+
+        const ids = getWishlistIds();
+        const isSaved = ids.includes(productId);
+        const nextIds = isSaved
+            ? ids.filter(function(id) { return id !== productId; })
+            : ids.concat(productId);
+
+        setWishlistIds(nextIds);
+        return !isSaved;
+    }
+
     function normalizePath(path) {
         if (!path) return '/';
 
@@ -168,6 +231,10 @@ $(document).ready(function() {
             return '/contact/';
         }
 
+        if (pathname.startsWith('/about/') || pathname.startsWith('/faq/')) {
+            return '/';
+        }
+
         if (pathname.startsWith('/admin/')) {
             return '/admin/';
         }
@@ -176,9 +243,15 @@ $(document).ready(function() {
             pathname.startsWith('/shop/') ||
             pathname.startsWith('/shop-cart/') ||
             pathname.startsWith('/checkout/') ||
+            pathname.startsWith('/my-account/') ||
+            pathname.startsWith('/orders-tracking/') ||
             pathname.startsWith('/product-details/') ||
             pathname.startsWith('/thank-you/')
         ) {
+            return '/shop/';
+        }
+
+        if (pathname.startsWith('/wishlist/')) {
             return '/shop/';
         }
 
@@ -206,6 +279,36 @@ $(document).ready(function() {
 
             const linkPath = normalizePath(link.getAttribute('href') || link.href);
             $(this).toggleClass('active', activePath && linkPath === activePath);
+        });
+    }
+
+    function syncFooterLinks() {
+        $('.footer__widget').each(function() {
+            const widget = $(this);
+            const heading = widget.find('h6').first().text().trim().toLowerCase();
+            const list = widget.find('ul').first();
+
+            if (!list.length) {
+                return;
+            }
+
+            if (heading === 'quick links') {
+                list.html(`
+                    <li><a href="./about/">About</a></li>
+                    <li><a href="./blog/">Blog</a></li>
+                    <li><a href="./contact/">Contact</a></li>
+                    <li><a href="./faq/">FAQ</a></li>
+                `);
+            }
+
+            if (heading === 'account') {
+                list.html(`
+                    <li><a href="./my-account/">My Account</a></li>
+                    <li><a href="./orders-tracking/">Orders Tracking</a></li>
+                    <li><a href="./checkout/">Checkout</a></li>
+                    <li><a href="./wishlist/">Wishlist</a></li>
+                `);
+            }
         });
     }
 
@@ -289,6 +392,20 @@ $(document).ready(function() {
 
     ensureToastSupport();
     syncActiveNavbar();
+    syncFooterLinks();
+    updateWishlistNavbar();
+
+    window.getWishlistIds = getWishlistIds;
+    window.isWishlisted = isWishlisted;
+    window.toggleWishlist = toggleWishlist;
+    window.updateWishlistNavbar = updateWishlistNavbar;
+
+    window.addEventListener('storage', function() {
+        updateWishlistNavbar();
+    });
+    window.addEventListener('wishlist:changed', function() {
+        updateWishlistNavbar();
+    });
 
     $('#loginForm').on('submit', async function(e) {
         e.preventDefault();

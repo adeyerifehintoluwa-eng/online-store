@@ -9,6 +9,8 @@ const DATA_DIR = path.join(ROOT_DIR, 'data');
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
+const BLOG_POSTS_FILE = path.join(DATA_DIR, 'blog-posts.json');
+const CONTACT_CONTENT_FILE = path.join(DATA_DIR, 'contact-content.json');
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const PORT = Number(process.env.PORT || 3000);
 
@@ -34,17 +36,22 @@ const MIME_TYPES = {
 const PAGE_ROUTES = {
     '/': 'index.html',
     '/admin/': 'admin.html',
+    '/about/': 'about.html',
     '/blog/': 'blog.html',
     '/blog-details/': 'blog-details.html',
     '/checkout/': 'checkout.html',
     '/contact/': 'contact.html',
+    '/faq/': 'faq.html',
     '/login/': 'login.html',
     '/men/': 'men.html',
+    '/my-account/': 'my-account.html',
+    '/orders-tracking/': 'orders-tracking.html',
     '/product-details/': 'product-details.html',
     '/shop/': 'shop.html',
     '/shop-cart/': 'shop-cart.html',
     '/signup/': 'signup.html',
     '/thank-you/': 'thank-you.html',
+    '/wishlist/': 'wishlist.html',
     '/women/': 'women.html'
 };
 
@@ -194,6 +201,85 @@ const SEED_PRODUCTS = [
     }
 ];
 
+const SEED_BLOG_POSTS = [
+    {
+        id: 'styling-aso-oke-for-modern-occasions',
+        title: 'Styling Aso-Oke for modern occasions without losing the cultural statement',
+        excerpt: 'From weddings to engagement shoots, KT Fashion shares how to wear Aso-Oke with structure, comfort, and the right accessories.',
+        image: 'img/product/details/aso-oke-b.jpg',
+        category: 'Style Guide',
+        author: 'KT Fashion Team',
+        quote: 'The strongest native look is not always the loudest one. It is the outfit that feels intentional from fabric to finishing.',
+        content: 'Aso-Oke remains one of the strongest pieces in Nigerian occasion dressing because it carries texture, heritage, and presence in a way very few fabrics can. The difference between a look that feels heavy and a look that feels refined usually comes down to fit, proportion, and how the accessories are handled.\n\nAt KT Fashion, we usually advise clients to start with the event itself. A morning introduction, a church wedding, and a late-evening reception do not all ask for the same silhouette. When the fabric already has depth, the rest of the styling should support it instead of competing with it.\n\nFor women, structured dresses, iro and buba sets, and softer layered wraps all work well when the neckline, sleeve volume, and jewelry are chosen carefully. For men, a clean-cut traditional set in the right tone immediately feels elevated when paired with neat footwear and a composed overall fit.\n\nThe easiest way to keep an Aso-Oke look modern is to balance one statement element with calm supporting pieces. If the fabric is bold, let the bag, beads, or gele work with it rather than against it. That balance is where elegance shows.',
+        tags: ['Aso-Oke', 'Occasion Wear', 'Styling', 'KT Fashion'],
+        featured: true,
+        publishedAt: '2026-03-05T09:00:00.000Z'
+    },
+    {
+        id: 'choosing-the-right-ankara-silhouette',
+        title: 'Choosing the right Ankara silhouette for birthdays, owambes, and polished daywear',
+        excerpt: 'Ankara works best when the cut matches the occasion. This KT Fashion guide breaks down how to choose shapes that flatter and still feel practical.',
+        image: 'img/product/details/Ankara-gown.jpg',
+        category: 'Fashion Tips',
+        author: 'KT Fashion Team',
+        quote: 'Print alone does not make the outfit memorable. Shape is what gives Ankara confidence.',
+        content: 'Ankara is flexible enough to move from casual daywear to celebration dressing, but the silhouette changes everything. A dress that works beautifully for a brunch or birthday setup may not carry the same energy for a wedding guest look.\n\nWhen clients come to KT Fashion for Ankara pieces, we look at three things first: where the outfit will be worn, how much movement the person wants, and what level of statement the print already makes. Once those are clear, the cut becomes easier to get right.\n\nStraight silhouettes create a polished and easy finish, especially when the fabric print is already busy. Fitted waistlines and fuller skirts bring drama and photograph well for events, while softer kimono-inspired shapes feel relaxed but still intentional when styled properly.\n\nThe safest way to avoid an overworked Ankara look is to let one idea lead the outfit. Either the print leads, the sleeve shape leads, or the accessories lead. When everything tries to dominate, the outfit loses clarity.',
+        tags: ['Ankara', 'Women', 'Style Guide', 'Events'],
+        featured: true,
+        publishedAt: '2026-03-01T11:00:00.000Z'
+    },
+    {
+        id: 'statement-beads-for-bridal-and-celebration-looks',
+        title: 'How statement beads complete bridal and celebration looks',
+        excerpt: 'Beads are not an afterthought in traditional styling. KT Fashion explains how to choose sets that support the outfit and frame the face correctly.',
+        image: 'img/product/details/Adunni-bag.jpeg',
+        category: 'Accessories',
+        author: 'KT Fashion Team',
+        quote: 'Jewelry should finish the outfit, not interrupt it.',
+        content: 'In traditional fashion, beads do more than decorate the neck. They frame the face, connect the colors in the outfit, and often carry the ceremonial energy of the entire look. That is why the wrong bead size or color can throw off an otherwise excellent outfit.\n\nFor brides and celebrants, we usually recommend starting from the neckline and the mood of the event. A higher neckline often works better with a more deliberate layered set, while open or sculpted necklines can carry bolder statement pieces with more breathing room.\n\nColor matters just as much as size. Rich corals, wine tones, ivory, and deep reds all communicate differently depending on the fabric and skin tone beside them. Matching exactly is not always necessary. Coordination is often more elegant than strict sameness.\n\nKT Fashion bead sets are chosen to feel complete with occasion wear, not separate from it. The right set should make the clothing feel more expensive, more settled, and more memorable the moment it is worn.',
+        tags: ['Beads', 'Jewelry', 'Bridal', 'Accessories'],
+        featured: false,
+        publishedAt: '2026-02-23T10:30:00.000Z'
+    },
+    {
+        id: 'pairing-handcrafted-bags-with-native-outfits',
+        title: 'Pairing handcrafted bags with native outfits the right way',
+        excerpt: 'A good bag should support the fabric story. Here is how KT Fashion approaches bags for Aso-Oke, Ankara, and event-ready styling.',
+        image: 'img/product/details/Aso-oke-bag.jpg',
+        category: 'Accessories',
+        author: 'KT Fashion Team',
+        quote: 'A statement bag works best when it feels like part of the outfit story, not a last-minute extra.',
+        content: 'Handcrafted bags have become an essential part of modern native styling because they bridge function and style so easily. They can echo the texture of the fabric, repeat a color, or bring structure into a look that needs a sharper finish.\n\nThe mistake many people make is choosing a bag only because it is beautiful on its own. A bag can be lovely and still be the wrong choice for the outfit. Scale, texture, and occasion all matter.\n\nFor Aso-Oke looks, structured bags with a visible woven or textural finish tend to sit better than overly soft shapes. Ankara styling is more flexible, but even there, the cleaner the silhouette, the easier it is for the print to remain the focus.\n\nAt KT Fashion, we think of the bag as a styling anchor. If it repeats one strong idea from the outfit and leaves the rest alone, it usually lands well.',
+        tags: ['Bags', 'Aso-Oke', 'Ankara', 'Styling'],
+        featured: false,
+        publishedAt: '2026-02-18T14:00:00.000Z'
+    },
+    {
+        id: 'building-a-coordinated-his-and-hers-look',
+        title: 'Building a coordinated his-and-hers traditional look without looking overmatched',
+        excerpt: 'Couples do not need identical outfits to look aligned. KT Fashion shares how to coordinate color, texture, and detail for events.',
+        image: 'img/product/details/men-Aso-oke.jpg',
+        category: 'Occasion Wear',
+        author: 'KT Fashion Team',
+        quote: 'Coordination looks strongest when two outfits feel connected, not duplicated.',
+        content: 'Coordinated couple styling has become a major part of engagement ceremonies, traditional weddings, and celebration shoots. The strongest result is rarely full duplication. It is usually a shared color conversation, matching intensity, and one or two repeated details.\n\nWhen building his-and-hers looks, we start with the main event tone. If the woman is wearing a richly textured Aso-Oke dress, the man does not have to wear the exact same texture in the exact same volume. He only needs enough connection in color family or finish to make the pairing feel deliberate.\n\nAccessories should also be coordinated with restraint. Matching every single detail can make the styling feel forced. Instead, choose one or two touchpoints such as a shared accent color, complementary beads, or a bag and cap story that feels linked.\n\nKT Fashion pieces are selected to work in combinations, which makes couple styling easier. The goal is always balance: two strong looks, clearly connected, with room for each person to still stand on their own.',
+        tags: ['Men', 'Women', 'Couples', 'Occasion Wear'],
+        featured: true,
+        publishedAt: '2026-02-10T15:00:00.000Z'
+    }
+];
+
+const SEED_CONTACT_CONTENT = {
+    title: 'Talk to KT Fashion',
+    intro: 'Reach out for product questions, styling guidance, account help, or order support. KT Fashion uses this page to make sure customers know where to go when they need quick help.',
+    address: 'KT Fashion Store, Lagos, Nigeria',
+    primaryPhone: '+234 801 234 5678',
+    secondaryPhone: '+234 809 876 5432',
+    supportLabel: 'Customer Support',
+    supportEmail: 'support@ktfashion.com',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126871.56902579633!2d3.2889702440969008!3d6.548035692223913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8c7a5222cf51%3A0xb0f858b71e4f8db0!2sLagos!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng'
+};
+
 const sessions = new Map();
 
 function ensureDataFiles() {
@@ -209,6 +295,14 @@ function ensureDataFiles() {
 
     if (!fs.existsSync(ORDERS_FILE)) {
         writeJson(ORDERS_FILE, []);
+    }
+
+    if (!fs.existsSync(BLOG_POSTS_FILE)) {
+        writeJson(BLOG_POSTS_FILE, SEED_BLOG_POSTS.map(withBlogTimestamps));
+    }
+
+    if (!fs.existsSync(CONTACT_CONTENT_FILE)) {
+        writeJson(CONTACT_CONTENT_FILE, SEED_CONTACT_CONTENT);
     }
 
     const users = readJson(USERS_FILE, []);
@@ -235,6 +329,16 @@ function withTimestamps(product) {
         ...product,
         createdAt: product.createdAt || now,
         updatedAt: product.updatedAt || now
+    };
+}
+
+function withBlogTimestamps(post) {
+    const now = new Date().toISOString();
+    return {
+        ...post,
+        publishedAt: post.publishedAt || now,
+        createdAt: post.createdAt || now,
+        updatedAt: post.updatedAt || now
     };
 }
 
@@ -347,6 +451,35 @@ function normalizeProduct(product) {
     };
 }
 
+function buildExcerpt(value) {
+    const plain = String(value || '').replace(/\s+/g, ' ').trim();
+    if (plain.length <= 160) {
+        return plain;
+    }
+
+    return `${plain.slice(0, 157).trimEnd()}...`;
+}
+
+function normalizeBlogPost(post) {
+    const content = String(post.content || '').trim();
+    const tags = Array.isArray(post.tags)
+        ? post.tags.map((tag) => String(tag || '').trim()).filter(Boolean)
+        : [];
+    const wordCount = content ? content.split(/\s+/).length : 0;
+
+    return {
+        ...post,
+        excerpt: String(post.excerpt || '').trim() || buildExcerpt(content),
+        content,
+        author: String(post.author || 'KT Fashion Team').trim(),
+        category: String(post.category || 'KT Fashion Journal').trim(),
+        quote: String(post.quote || '').trim(),
+        tags,
+        readTimeMinutes: Math.max(1, Math.ceil(wordCount / 180)),
+        url: `./blog-details/?id=${encodeURIComponent(post.id)}`
+    };
+}
+
 function sanitizeProductInput(input, existingProduct) {
     const name = String(input.name || '').trim();
     const image = String(input.image || '').trim();
@@ -398,6 +531,137 @@ function sanitizeProductInput(input, existingProduct) {
             featured,
             createdAt: existingProduct?.createdAt || new Date().toISOString(),
             updatedAt: new Date().toISOString()
+        }
+    };
+}
+
+function sanitizeBlogPostInput(input, existingPost) {
+    const title = String(input.title || '').trim();
+    const excerpt = String(input.excerpt || '').trim();
+    const content = String(input.content || '').trim();
+    const image = String(input.image || '').trim();
+    const category = String(input.category || '').trim();
+    const author = String(input.author || '').trim();
+    const quote = String(input.quote || '').trim();
+    const rawTags = Array.isArray(input.tags)
+        ? input.tags
+        : String(input.tags || '').split(',');
+    const tags = rawTags
+        .map((tag) => String(tag || '').trim())
+        .filter(Boolean)
+        .slice(0, 8);
+    const featured = Boolean(input.featured);
+    const publishedAtInput = String(input.publishedAt || '').trim();
+    const publishedAt = publishedAtInput
+        ? new Date(publishedAtInput)
+        : (existingPost?.publishedAt ? new Date(existingPost.publishedAt) : new Date());
+
+    if (title.length < 8) {
+        return { error: 'Blog title must be at least 8 characters.' };
+    }
+
+    if (excerpt.length < 24) {
+        return { error: 'Blog excerpt must be at least 24 characters.' };
+    }
+
+    if (!image) {
+        return { error: 'Blog image path is required.' };
+    }
+
+    if (!category) {
+        return { error: 'Blog category is required.' };
+    }
+
+    if (content.length < 80) {
+        return { error: 'Blog content must be at least 80 characters.' };
+    }
+
+    if (Number.isNaN(publishedAt.getTime())) {
+        return { error: 'Publish date is invalid.' };
+    }
+
+    return {
+        post: {
+            id: existingPost?.id || slugify(title) || `post-${Date.now()}`,
+            title,
+            excerpt,
+            content,
+            image,
+            category,
+            author: author || 'KT Fashion Team',
+            quote,
+            tags: tags.length ? tags : ['KT Fashion'],
+            featured,
+            publishedAt: publishedAt.toISOString(),
+            createdAt: existingPost?.createdAt || new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        }
+    };
+}
+
+function normalizeOrder(order) {
+    return {
+        ...order,
+        status: String(order.status || 'Received').trim()
+    };
+}
+
+function sanitizeContactContentInput(input) {
+    const title = String(input.title || '').trim();
+    const intro = String(input.intro || '').trim();
+    const address = String(input.address || '').trim();
+    const primaryPhone = String(input.primaryPhone || '').trim();
+    const secondaryPhone = String(input.secondaryPhone || '').trim();
+    const supportLabel = String(input.supportLabel || '').trim();
+    const supportEmail = String(input.supportEmail || '').trim().toLowerCase();
+    const mapEmbedUrl = String(input.mapEmbedUrl || '').trim();
+
+    if (title.length < 4) {
+        return { error: 'Contact title must be at least 4 characters.' };
+    }
+
+    if (intro.length < 20) {
+        return { error: 'Contact intro must be at least 20 characters.' };
+    }
+
+    if (!address) {
+        return { error: 'Contact address is required.' };
+    }
+
+    if (!primaryPhone) {
+        return { error: 'Primary phone number is required.' };
+    }
+
+    if (!/^[0-9+\-\s()]{7,20}$/.test(primaryPhone)) {
+        return { error: 'Enter a valid primary phone number.' };
+    }
+
+    if (secondaryPhone && !/^[0-9+\-\s()]{7,20}$/.test(secondaryPhone)) {
+        return { error: 'Enter a valid secondary phone number.' };
+    }
+
+    if (!supportLabel) {
+        return { error: 'Support label is required.' };
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(supportEmail)) {
+        return { error: 'Enter a valid support email address.' };
+    }
+
+    if (!/^https:\/\/www\.google\.com\/maps\/embed\?/i.test(mapEmbedUrl)) {
+        return { error: 'Use a valid Google Maps embed URL.' };
+    }
+
+    return {
+        content: {
+            title,
+            intro,
+            address,
+            primaryPhone,
+            secondaryPhone,
+            supportLabel,
+            supportEmail,
+            mapEmbedUrl
         }
     };
 }
@@ -713,6 +977,65 @@ async function handleApi(request, response, url) {
         return;
     }
 
+    if (pathname === '/api/blog-posts' && method === 'GET') {
+        let posts = readJson(BLOG_POSTS_FILE, [])
+            .map(normalizeBlogPost)
+            .sort((left, right) => (
+                new Date(right.publishedAt).getTime() - new Date(left.publishedAt).getTime()
+            ));
+        const category = String(url.searchParams.get('category') || '').trim();
+        const featured = url.searchParams.get('featured');
+
+        if (category) {
+            posts = posts.filter((post) => post.category === category);
+        }
+
+        if (featured === 'true') {
+            posts = posts.filter((post) => post.featured);
+        }
+
+        sendJson(response, 200, { posts });
+        return;
+    }
+
+    if (pathname.startsWith('/api/blog-posts/') && method === 'GET') {
+        const postId = pathname.split('/').pop();
+        const post = readJson(BLOG_POSTS_FILE, [])
+            .map(normalizeBlogPost)
+            .find((item) => item.id === postId);
+
+        if (!post) {
+            sendJson(response, 404, { message: 'Blog post not found.' });
+            return;
+        }
+
+        sendJson(response, 200, { post });
+        return;
+    }
+
+    if (pathname === '/api/contact-content' && method === 'GET') {
+        const content = readJson(CONTACT_CONTENT_FILE, SEED_CONTACT_CONTENT);
+        sendJson(response, 200, { content });
+        return;
+    }
+
+    if (pathname === '/api/orders' && method === 'GET') {
+        if (!currentUser) {
+            sendJson(response, 401, { message: 'Please log in to view your orders.' });
+            return;
+        }
+
+        const orders = readJson(ORDERS_FILE, [])
+            .filter((order) => isAdmin(currentUser) || order.userId === currentUser.id)
+            .map(normalizeOrder)
+            .sort((left, right) => (
+                new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime()
+            ));
+
+        sendJson(response, 200, { orders });
+        return;
+    }
+
     if (pathname === '/api/orders' && method === 'POST') {
         if (!currentUser) {
             sendJson(response, 401, { message: 'Please log in to place an order.' });
@@ -763,6 +1086,7 @@ async function handleApi(request, response, url) {
             customerName: currentUser.name,
             customerEmail: currentUser.email,
             billingDetails: billingValidation.billingDetails,
+            status: 'Received',
             createdAt: new Date().toISOString(),
             itemCount: orderItems.reduce((sum, item) => sum + item.quantity, 0),
             total,
@@ -795,7 +1119,7 @@ async function handleApi(request, response, url) {
             return;
         }
 
-        sendJson(response, 200, { order });
+        sendJson(response, 200, { order: normalizeOrder(order) });
         return;
     }
 
@@ -894,10 +1218,137 @@ async function handleApi(request, response, url) {
             return;
         }
 
-        const orders = readJson(ORDERS_FILE, []).sort((left, right) => (
-            new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime()
-        ));
+        const orders = readJson(ORDERS_FILE, [])
+            .map(normalizeOrder)
+            .sort((left, right) => (
+                new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime()
+            ));
         sendJson(response, 200, { orders });
+        return;
+    }
+
+    if (pathname === '/api/admin/blog-posts' && method === 'GET') {
+        if (!isAdmin(currentUser)) {
+            sendJson(response, 403, { message: 'Admin access is required.' });
+            return;
+        }
+
+        const posts = readJson(BLOG_POSTS_FILE, [])
+            .map(normalizeBlogPost)
+            .sort((left, right) => (
+                new Date(right.publishedAt).getTime() - new Date(left.publishedAt).getTime()
+            ));
+        sendJson(response, 200, { posts });
+        return;
+    }
+
+    if (pathname === '/api/admin/blog-posts' && method === 'POST') {
+        if (!isAdmin(currentUser)) {
+            sendJson(response, 403, { message: 'Admin access is required.' });
+            return;
+        }
+
+        const body = await readRequestBody(request);
+        const validation = sanitizeBlogPostInput(body);
+        if (validation.error) {
+            sendJson(response, 400, { message: validation.error });
+            return;
+        }
+
+        const posts = readJson(BLOG_POSTS_FILE, []);
+        if (posts.some((post) => post.id === validation.post.id)) {
+            validation.post.id = `${validation.post.id}-${Date.now()}`;
+        }
+
+        posts.push(validation.post);
+        writeJson(BLOG_POSTS_FILE, posts);
+        sendJson(response, 201, {
+            message: 'Blog post created successfully.',
+            post: normalizeBlogPost(validation.post)
+        });
+        return;
+    }
+
+    if (pathname.startsWith('/api/admin/blog-posts/') && method === 'PUT') {
+        if (!isAdmin(currentUser)) {
+            sendJson(response, 403, { message: 'Admin access is required.' });
+            return;
+        }
+
+        const postId = pathname.split('/').pop();
+        const body = await readRequestBody(request);
+        const posts = readJson(BLOG_POSTS_FILE, []);
+        const existingIndex = posts.findIndex((post) => post.id === postId);
+
+        if (existingIndex === -1) {
+            sendJson(response, 404, { message: 'Blog post not found.' });
+            return;
+        }
+
+        const validation = sanitizeBlogPostInput(body, posts[existingIndex]);
+        if (validation.error) {
+            sendJson(response, 400, { message: validation.error });
+            return;
+        }
+
+        posts[existingIndex] = validation.post;
+        writeJson(BLOG_POSTS_FILE, posts);
+        sendJson(response, 200, {
+            message: 'Blog post updated successfully.',
+            post: normalizeBlogPost(validation.post)
+        });
+        return;
+    }
+
+    if (pathname.startsWith('/api/admin/blog-posts/') && method === 'DELETE') {
+        if (!isAdmin(currentUser)) {
+            sendJson(response, 403, { message: 'Admin access is required.' });
+            return;
+        }
+
+        const postId = pathname.split('/').pop();
+        const posts = readJson(BLOG_POSTS_FILE, []);
+        const nextPosts = posts.filter((post) => post.id !== postId);
+
+        if (nextPosts.length === posts.length) {
+            sendJson(response, 404, { message: 'Blog post not found.' });
+            return;
+        }
+
+        writeJson(BLOG_POSTS_FILE, nextPosts);
+        sendJson(response, 200, { message: 'Blog post deleted successfully.' });
+        return;
+    }
+
+    if (pathname === '/api/admin/contact-content' && method === 'GET') {
+        if (!isAdmin(currentUser)) {
+            sendJson(response, 403, { message: 'Admin access is required.' });
+            return;
+        }
+
+        const content = readJson(CONTACT_CONTENT_FILE, SEED_CONTACT_CONTENT);
+        sendJson(response, 200, { content });
+        return;
+    }
+
+    if (pathname === '/api/admin/contact-content' && method === 'PUT') {
+        if (!isAdmin(currentUser)) {
+            sendJson(response, 403, { message: 'Admin access is required.' });
+            return;
+        }
+
+        const body = await readRequestBody(request);
+        const validation = sanitizeContactContentInput(body);
+        if (validation.error) {
+            sendJson(response, 400, { message: validation.error });
+            return;
+        }
+
+        writeJson(CONTACT_CONTENT_FILE, validation.content);
+        sendJson(response, 200, {
+            message: 'Contact page details updated successfully.',
+            content: validation.content
+        });
         return;
     }
 
