@@ -123,7 +123,7 @@
                 return product.category === 'Women' && product.section === 'wears';
             }));
 
-            renderInto('womenBagsProducts', products.filter(function(product) {
+            renderInto('womenAccessoriesProducts', products.filter(function(product) {
                 return product.category === 'Women' && product.section === 'bags';
             }));
 
@@ -135,7 +135,7 @@
                 return product.category === 'Men';
             }));
         } catch (error) {
-            ['shopFeaturedProducts', 'womenWearsProducts', 'womenBagsProducts', 'womenJewelryProducts', 'menProducts'].forEach(function(containerId) {
+            ['shopFeaturedProducts', 'womenWearsProducts', 'womenAccessoriesProducts', 'womenJewelryProducts', 'menProducts'].forEach(function(containerId) {
                 var container = document.getElementById(containerId);
                 if (container) {
                     container.innerHTML = '<div class="col-lg-12"><p style="color: #666;">Products are unavailable right now.</p></div>';
