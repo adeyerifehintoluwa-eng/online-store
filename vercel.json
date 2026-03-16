@@ -1,65 +1,9 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "functions": {
-    "api/index.js": {
-      "includeFiles": [
-        "*.html",
-        "css/**",
-        "js/**",
-        "img/**",
-        "fonts/**",
-        "sass/**",
-        "Source/**",
-        "data/**",
-        "blog/**",
-        "blog-details/**",
-        "checkout/**",
-        "contact/**",
-        "login/**",
-        "men/**",
-        "product-details/**",
-        "shop/**",
-        "shop-cart/**",
-        "signup/**",
-        "thank-you/**",
-        "women/**",
-        "about/**",
-        "admin/**",
-        "faq/**",
-        "my-account/**",
-        "orders-tracking/**",
-        "wishlist/**"
-      ]
-    },
-    "api/[...path].js": {
-      "includeFiles": [
-        "*.html",
-        "css/**",
-        "js/**",
-        "img/**",
-        "fonts/**",
-        "sass/**",
-        "Source/**",
-        "data/**",
-        "blog/**",
-        "blog-details/**",
-        "checkout/**",
-        "contact/**",
-        "login/**",
-        "men/**",
-        "product-details/**",
-        "shop/**",
-        "shop-cart/**",
-        "signup/**",
-        "thank-you/**",
-        "women/**",
-        "about/**",
-        "admin/**",
-        "faq/**",
-        "my-account/**",
-        "orders-tracking/**",
-        "wishlist/**"
-      ]
+    "api/**/*.js": {
+      "includeFiles": "data/**"
     }
   }
 }
