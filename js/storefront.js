@@ -104,6 +104,48 @@
         bindAddToCartButtons(container);
     }
 
+    function initWomenCategoryTabs() {
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-category-tab]'));
+        var panels = Array.prototype.slice.call(document.querySelectorAll('[data-category-panel]'));
+
+        if (!tabs.length || !panels.length) {
+            return;
+        }
+
+        function showCategory(category, shouldUpdateHash) {
+            var activeCategory = category || 'wears';
+
+            tabs.forEach(function(tab) {
+                var isActive = tab.getAttribute('data-category-tab') === activeCategory;
+                tab.parentElement.classList.toggle('active', isActive);
+            });
+
+            panels.forEach(function(panel) {
+                var isActive = panel.getAttribute('data-category-panel') === activeCategory;
+                panel.classList.toggle('is-active', isActive);
+            });
+
+            if (shouldUpdateHash) {
+                if (window.history && typeof window.history.replaceState === 'function') {
+                    window.history.replaceState(null, '', '#' + activeCategory);
+                } else {
+                    window.location.hash = activeCategory;
+                }
+            }
+        }
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function(event) {
+                event.preventDefault();
+                showCategory(tab.getAttribute('data-category-tab'), true);
+            });
+        });
+
+        var initialHash = (window.location.hash || '').replace('#', '').toLowerCase();
+        var allowedHashes = ['wears', 'accessories', 'jewelry'];
+        showCategory(allowedHashes.indexOf(initialHash) >= 0 ? initialHash : 'wears', false);
+    }
+
     window.addEventListener('wishlist:changed', function() {
         Array.prototype.slice.call(document.querySelectorAll('.js-storefront-toggle-wishlist')).forEach(updateWishlistButtonState);
     });
@@ -134,6 +176,8 @@
             renderInto('menProducts', products.filter(function(product) {
                 return product.category === 'Men';
             }));
+
+            initWomenCategoryTabs();
         } catch (error) {
             ['shopFeaturedProducts', 'womenWearsProducts', 'womenAccessoriesProducts', 'womenJewelryProducts', 'menProducts'].forEach(function(containerId) {
                 var container = document.getElementById(containerId);
@@ -141,6 +185,8 @@
                     container.innerHTML = '<div class="col-lg-12"><p style="color: #666;">Products are unavailable right now.</p></div>';
                 }
             });
+
+            initWomenCategoryTabs();
         }
     });
 })();

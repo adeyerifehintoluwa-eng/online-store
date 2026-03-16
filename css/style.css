@@ -1733,6 +1733,18 @@ ol {
 	margin-right: 0 !important;
 }
 
+.women-category-tabs li a {
+	display: inline-block;
+}
+
+.women-category-panel {
+	display: none;
+}
+
+.women-category-panel.is-active {
+	display: block;
+}
+
 .filter-range-wrap .range-slider .price-input {
 	position: relative;
 }
