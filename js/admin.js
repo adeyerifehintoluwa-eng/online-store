@@ -500,10 +500,56 @@ $(document).ready(function() {
         populateContactForm(contactData.content || {});
     }
 
+    function initAdminSections() {
+        const buttons = $('[data-admin-section-target]');
+        const panels = $('[data-admin-section-panel]');
+        const allowedSections = ['overview', 'products', 'blog', 'orders', 'contact'];
+
+        if (!buttons.length || !panels.length) {
+            return;
+        }
+
+        function showSection(section, updateHash) {
+            const nextSection = allowedSections.includes(section) ? section : 'overview';
+
+            buttons.each(function() {
+                const button = $(this);
+                const isActive = button.attr('data-admin-section-target') === nextSection;
+                button.toggleClass('is-active', isActive);
+                button.attr('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            panels.each(function() {
+                const panel = $(this);
+                panel.toggleClass('is-active', panel.attr('data-admin-section-panel') === nextSection);
+            });
+
+            if (updateHash) {
+                if (window.history && typeof window.history.replaceState === 'function') {
+                    window.history.replaceState(null, '', '#' + nextSection);
+                } else {
+                    window.location.hash = nextSection;
+                }
+            }
+        }
+
+        buttons.off('click.adminSections').on('click.adminSections', function() {
+            showSection($(this).attr('data-admin-section-target'), true);
+        });
+
+        window.showAdminSection = function(section) {
+            showSection(section, true);
+        };
+
+        const initialSection = String(window.location.hash || '').replace('#', '').toLowerCase();
+        showSection(initialSection, false);
+    }
+
     ensureToastSupport();
     syncSectionOptions();
     resetProductForm();
     resetBlogForm();
+    initAdminSections();
 
     $('#adminProductCategory').on('change', syncSectionOptions);
     $('#adminProductImage').on('input blur', function() {
@@ -652,7 +698,10 @@ $(document).ready(function() {
             text: '#adminImagePreviewText',
             emptyText: 'Paste an image path or URL to preview it here.'
         });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof window.showAdminSection === 'function') {
+            window.showAdminSection('products');
+        }
+        document.getElementById('adminProductForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     $(document).on('click', '.admin-edit-blog', function() {
@@ -684,7 +733,10 @@ $(document).ready(function() {
             text: '#adminBlogImagePreviewText',
             emptyText: 'Paste a blog image path or URL to preview it here.'
         });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof window.showAdminSection === 'function') {
+            window.showAdminSection('blog');
+        }
+        document.getElementById('adminBlogForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     $(document).on('click', '.admin-delete-product', async function() {

@@ -114,152 +114,183 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-bottom: 28px;">
-                    <div class="col-md-4">
-                        <div style="padding: 24px; border: 1px solid #f2f2f2;">
-                            <p style="margin-bottom: 8px; color: #666;">Products</p>
-                            <h3 id="adminProductCount" style="margin: 0;">0</h3>
+                <div class="admin-layout">
+                    <aside class="admin-sidebar">
+                        <p class="admin-sidebar__label">Sections</p>
+                        <div class="admin-sidebar__nav">
+                            <button type="button" class="admin-sidebar__link is-active" data-admin-section-target="overview">Overview</button>
+                            <button type="button" class="admin-sidebar__link" data-admin-section-target="products">Products</button>
+                            <button type="button" class="admin-sidebar__link" data-admin-section-target="blog">Blog</button>
+                            <button type="button" class="admin-sidebar__link" data-admin-section-target="orders">Orders</button>
+                            <button type="button" class="admin-sidebar__link" data-admin-section-target="contact">Contact</button>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div style="padding: 24px; border: 1px solid #f2f2f2;">
-                            <p style="margin-bottom: 8px; color: #666;">Blog Posts</p>
-                            <h3 id="adminBlogCount" style="margin: 0;">0</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div style="padding: 24px; border: 1px solid #f2f2f2;">
-                            <p style="margin-bottom: 8px; color: #666;">Orders</p>
-                            <h3 id="adminOrderCount" style="margin: 0;">0</h3>
-                        </div>
-                    </div>
-                </div>
+                    </aside>
 
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="contact__form" style="padding: 28px; border: 1px solid #f2f2f2;">
-                            <h5 id="adminFormTitle">Add Product</h5>
-                            <form id="adminProductForm">
-                                <input type="hidden" id="adminProductId">
-                                <input type="text" id="adminProductName" placeholder="Product name" required>
-                                <input type="number" id="adminProductPrice" placeholder="Price" min="1" step="0.01" required>
-                                <input type="text" id="adminProductImage" placeholder="Image path or URL" required>
-                                <p id="adminFormMessage" style="display: none; margin: -6px 0 18px; font-size: 14px;"></p>
-                                <div id="adminImagePreviewWrap" style="display: none; margin-bottom: 20px; padding: 14px; border: 1px solid #f2f2f2;">
-                                    <img id="adminImagePreview" src="" alt="Product preview" style="display: none; width: 100%; height: 180px; object-fit: cover; border-radius: 6px;">
-                                    <p id="adminImagePreviewText" style="margin: 0; color: #666; font-size: 14px;">Paste an image path or URL to preview it here.</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <select id="adminProductCategory" class="form-control" style="height: 50px; margin-bottom: 20px; border: 1px solid #ebebeb; padding: 0 20px;">
-                                            <option value="Women">Women</option>
-                                            <option value="Men">Men</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <select id="adminProductSection" class="form-control" style="height: 50px; margin-bottom: 20px; border: 1px solid #ebebeb; padding: 0 20px;"></select>
+                    <div class="admin-main">
+                        <section class="admin-panel is-active" data-admin-section-panel="overview">
+                            <div class="admin-panel-card">
+                                <div class="admin-panel-card__header">
+                                    <div>
+                                        <span class="admin-panel-card__eyebrow">Dashboard Snapshot</span>
+                                        <h4 style="margin-bottom: 8px;">Overview</h4>
+                                        <p style="margin: 0; color: #666; line-height: 1.8;">Use the sidebar to jump between management areas without scrolling through the full admin page.</p>
                                     </div>
                                 </div>
-                                <input type="text" id="adminProductBadge" placeholder="Badge">
-                                <textarea id="adminProductDescription" placeholder="Description" style="height: 110px;"></textarea>
-                                <textarea id="adminProductSpecification" placeholder="Specification" style="height: 110px;"></textarea>
-                                <textarea id="adminProductCare" placeholder="Care instructions" style="height: 110px;"></textarea>
-                                <label style="display: block; margin-bottom: 18px; font-size: 14px; color: #444;">
-                                    <input type="checkbox" id="adminProductFeatured" style="margin-right: 8px;">
-                                    Feature this product on the shop page
-                                </label>
-                                <button type="submit" class="site-btn" id="adminProductSubmit" style="margin-right: 8px;">Save Product</button>
-                                <button type="button" class="site-btn" id="adminResetForm" style="background: #111111;">Reset</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div style="padding: 28px; border: 1px solid #f2f2f2; margin-bottom: 24px;">
-                            <h5 style="margin-bottom: 18px;">Products</h5>
-                            <div id="adminProductList"></div>
-                        </div>
-                    </div>
-                </div>
+                            </div>
+                            <div class="row" style="margin-top: 24px;">
+                                <div class="col-md-4">
+                                    <div class="admin-stat-card">
+                                        <p style="margin-bottom: 8px; color: #666;">Products</p>
+                                        <h3 id="adminProductCount" style="margin: 0;">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="admin-stat-card">
+                                        <p style="margin-bottom: 8px; color: #666;">Blog Posts</p>
+                                        <h3 id="adminBlogCount" style="margin: 0;">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="admin-stat-card">
+                                        <p style="margin-bottom: 8px; color: #666;">Orders</p>
+                                        <h3 id="adminOrderCount" style="margin: 0;">0</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-lg-5">
-                        <div class="contact__form" style="padding: 28px; border: 1px solid #f2f2f2;">
-                            <h5 id="adminBlogFormTitle">Add Blog Post</h5>
-                            <form id="adminBlogForm">
-                                <input type="hidden" id="adminBlogId">
-                                <input type="text" id="adminBlogTitle" placeholder="Blog title" required>
-                                <input type="text" id="adminBlogCategory" placeholder="Category" required>
-                                <input type="text" id="adminBlogAuthor" placeholder="Author">
-                                <input type="datetime-local" id="adminBlogPublishedAt">
-                                <input type="text" id="adminBlogImage" placeholder="Image path or URL" required>
-                                <p id="adminBlogFormMessage" style="display: none; margin: -6px 0 18px; font-size: 14px;"></p>
-                                <div id="adminBlogImagePreviewWrap" style="display: none; margin-bottom: 20px; padding: 14px; border: 1px solid #f2f2f2;">
-                                    <img id="adminBlogImagePreview" src="" alt="Blog preview" style="display: none; width: 100%; height: 180px; object-fit: cover; border-radius: 6px;">
-                                    <p id="adminBlogImagePreviewText" style="margin: 0; color: #666; font-size: 14px;">Paste a blog image path or URL to preview it here.</p>
+                        <section class="admin-panel" data-admin-section-panel="products">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="contact__form admin-panel-card">
+                                        <h5 id="adminFormTitle">Add Product</h5>
+                                        <form id="adminProductForm">
+                                            <input type="hidden" id="adminProductId">
+                                            <input type="text" id="adminProductName" placeholder="Product name" required>
+                                            <input type="number" id="adminProductPrice" placeholder="Price" min="1" step="0.01" required>
+                                            <input type="text" id="adminProductImage" placeholder="Image path or URL" required>
+                                            <p id="adminFormMessage" style="display: none; margin: -6px 0 18px; font-size: 14px;"></p>
+                                            <div id="adminImagePreviewWrap" style="display: none; margin-bottom: 20px; padding: 14px; border: 1px solid #f2f2f2;">
+                                                <img id="adminImagePreview" src="" alt="Product preview" style="display: none; width: 100%; height: 180px; object-fit: cover; border-radius: 6px;">
+                                                <p id="adminImagePreviewText" style="margin: 0; color: #666; font-size: 14px;">Paste an image path or URL to preview it here.</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select id="adminProductCategory" class="form-control" style="height: 50px; margin-bottom: 20px; border: 1px solid #ebebeb; padding: 0 20px;">
+                                                        <option value="Women">Women</option>
+                                                        <option value="Men">Men</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select id="adminProductSection" class="form-control" style="height: 50px; margin-bottom: 20px; border: 1px solid #ebebeb; padding: 0 20px;"></select>
+                                                </div>
+                                            </div>
+                                            <input type="text" id="adminProductBadge" placeholder="Badge">
+                                            <textarea id="adminProductDescription" placeholder="Description" style="height: 110px;"></textarea>
+                                            <textarea id="adminProductSpecification" placeholder="Specification" style="height: 110px;"></textarea>
+                                            <textarea id="adminProductCare" placeholder="Care instructions" style="height: 110px;"></textarea>
+                                            <label style="display: block; margin-bottom: 18px; font-size: 14px; color: #444;">
+                                                <input type="checkbox" id="adminProductFeatured" style="margin-right: 8px;">
+                                                Feature this product on the shop page
+                                            </label>
+                                            <button type="submit" class="site-btn" id="adminProductSubmit" style="margin-right: 8px;">Save Product</button>
+                                            <button type="button" class="site-btn" id="adminResetForm" style="background: #111111;">Reset</button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <textarea id="adminBlogExcerpt" placeholder="Short excerpt" style="height: 110px;" required></textarea>
-                                <textarea id="adminBlogContent" placeholder="Full article content" style="height: 180px;" required></textarea>
-                                <textarea id="adminBlogQuote" placeholder="Optional quote" style="height: 110px;"></textarea>
-                                <input type="text" id="adminBlogTags" placeholder="Tags separated by commas">
-                                <label style="display: block; margin-bottom: 18px; font-size: 14px; color: #444;">
-                                    <input type="checkbox" id="adminBlogFeatured" style="margin-right: 8px;">
-                                    Feature this post in the journal
-                                </label>
-                                <button type="submit" class="site-btn" id="adminBlogSubmit" style="margin-right: 8px;">Save Post</button>
-                                <button type="button" class="site-btn" id="adminBlogResetForm" style="background: #111111;">Reset</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div style="padding: 28px; border: 1px solid #f2f2f2; margin-bottom: 24px;">
-                            <h5 style="margin-bottom: 18px;">Blog Posts</h5>
-                            <div id="adminBlogList"></div>
-                        </div>
-                        <div style="padding: 28px; border: 1px solid #f2f2f2;">
-                            <h5 style="margin-bottom: 18px;">Recent Orders</h5>
-                            <div id="adminOrderList"></div>
-                        </div>
-                    </div>
-                </div>
+                                <div class="col-lg-7">
+                                    <div class="admin-panel-card">
+                                        <h5 style="margin-bottom: 18px;">Products</h5>
+                                        <div id="adminProductList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-                <div class="row" style="margin-top: 24px;">
-                    <div class="col-lg-12">
-                        <div class="contact__form" style="padding: 28px; border: 1px solid #f2f2f2;">
-                            <h5 style="margin-bottom: 18px;">Contact Page Settings</h5>
-                            <form id="adminContactForm">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" id="adminContactTitle" placeholder="Contact page title" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" id="adminContactSupportLabel" placeholder="Support label" required>
-                                    </div>
-                                </div>
-                                <textarea id="adminContactIntro" placeholder="Intro text" style="height: 120px;" required></textarea>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" id="adminContactAddress" placeholder="Address" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input type="text" id="adminContactPrimaryPhone" placeholder="Primary phone" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input type="text" id="adminContactSecondaryPhone" placeholder="Secondary phone">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="email" id="adminContactSupportEmail" placeholder="Support email" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" id="adminContactMapEmbedUrl" placeholder="Google Maps embed URL" required>
+                        <section class="admin-panel" data-admin-section-panel="blog">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="contact__form admin-panel-card">
+                                        <h5 id="adminBlogFormTitle">Add Blog Post</h5>
+                                        <form id="adminBlogForm">
+                                            <input type="hidden" id="adminBlogId">
+                                            <input type="text" id="adminBlogTitle" placeholder="Blog title" required>
+                                            <input type="text" id="adminBlogCategory" placeholder="Category" required>
+                                            <input type="text" id="adminBlogAuthor" placeholder="Author">
+                                            <input type="datetime-local" id="adminBlogPublishedAt">
+                                            <input type="text" id="adminBlogImage" placeholder="Image path or URL" required>
+                                            <p id="adminBlogFormMessage" style="display: none; margin: -6px 0 18px; font-size: 14px;"></p>
+                                            <div id="adminBlogImagePreviewWrap" style="display: none; margin-bottom: 20px; padding: 14px; border: 1px solid #f2f2f2;">
+                                                <img id="adminBlogImagePreview" src="" alt="Blog preview" style="display: none; width: 100%; height: 180px; object-fit: cover; border-radius: 6px;">
+                                                <p id="adminBlogImagePreviewText" style="margin: 0; color: #666; font-size: 14px;">Paste a blog image path or URL to preview it here.</p>
+                                            </div>
+                                            <textarea id="adminBlogExcerpt" placeholder="Short excerpt" style="height: 110px;" required></textarea>
+                                            <textarea id="adminBlogContent" placeholder="Full article content" style="height: 180px;" required></textarea>
+                                            <textarea id="adminBlogQuote" placeholder="Optional quote" style="height: 110px;"></textarea>
+                                            <input type="text" id="adminBlogTags" placeholder="Tags separated by commas">
+                                            <label style="display: block; margin-bottom: 18px; font-size: 14px; color: #444;">
+                                                <input type="checkbox" id="adminBlogFeatured" style="margin-right: 8px;">
+                                                Feature this post in the journal
+                                            </label>
+                                            <button type="submit" class="site-btn" id="adminBlogSubmit" style="margin-right: 8px;">Save Post</button>
+                                            <button type="button" class="site-btn" id="adminBlogResetForm" style="background: #111111;">Reset</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <p id="adminContactFormMessage" style="display: none; margin: -6px 0 18px; font-size: 14px;"></p>
-                                <button type="submit" class="site-btn" style="margin-right: 8px;">Save Contact Details</button>
-                                <button type="button" class="site-btn" id="adminContactResetForm" style="background: #111111;">Reset</button>
-                            </form>
-                        </div>
+                                <div class="col-lg-7">
+                                    <div class="admin-panel-card">
+                                        <h5 style="margin-bottom: 18px;">Blog Posts</h5>
+                                        <div id="adminBlogList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="admin-panel" data-admin-section-panel="orders">
+                            <div class="admin-panel-card">
+                                <h5 style="margin-bottom: 18px;">Recent Orders</h5>
+                                <div id="adminOrderList"></div>
+                            </div>
+                        </section>
+
+                        <section class="admin-panel" data-admin-section-panel="contact">
+                            <div class="contact__form admin-panel-card">
+                                <h5 style="margin-bottom: 18px;">Contact Page Settings</h5>
+                                <form id="adminContactForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" id="adminContactTitle" placeholder="Contact page title" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" id="adminContactSupportLabel" placeholder="Support label" required>
+                                        </div>
+                                    </div>
+                                    <textarea id="adminContactIntro" placeholder="Intro text" style="height: 120px;" required></textarea>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" id="adminContactAddress" placeholder="Address" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" id="adminContactPrimaryPhone" placeholder="Primary phone" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" id="adminContactSecondaryPhone" placeholder="Secondary phone">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="email" id="adminContactSupportEmail" placeholder="Support email" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" id="adminContactMapEmbedUrl" placeholder="Google Maps embed URL" required>
+                                        </div>
+                                    </div>
+                                    <p id="adminContactFormMessage" style="display: none; margin: -6px 0 18px; font-size: 14px;"></p>
+                                    <button type="submit" class="site-btn" style="margin-right: 8px;">Save Contact Details</button>
+                                    <button type="button" class="site-btn" id="adminContactResetForm" style="background: #111111;">Reset</button>
+                                </form>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
